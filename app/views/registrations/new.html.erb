@@ -1,0 +1,26 @@
+<div class="">
+    <h1> Sign up </h1>
+    
+    <%=  form_with model: @user, url: sign_up_path do |form| %>
+        <div class="mb-3">
+        <%= form.label :username , class: "text-lg" %>
+        <%= form.text_field :username %>
+        </div>
+        <div class="mb-3">
+        <%= form.label :mail %>
+        <%= form.text_field :mail %>
+        </div>
+        <div class="mb-3">
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+        </div>
+        <div class="mb-3">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirm %>
+        </div>
+
+        <button class="">
+            <%= form.submit "Sign Up"%>
+        </button>
+    <% end %>
+</div>
