@@ -14,8 +14,19 @@ class RegistrationsController < ApplicationController
         end
     end
 
+    def goodbye
+        require_user_logged_in!
+    end
+    def destroy
+        require_user_logged_in!
+        User.destroy_by(id: Current.user.id)
+        redirect_to root_path, notice: "Account deleted successfully"
+    end
+
     private
     def user_params
         params.require(:user).permit(:username,:mail,:password,:password_confirmation)
     end
+
+
 end

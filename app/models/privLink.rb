@@ -1,0 +1,2 @@
+class PrivLink < Link
+end

@@ -1,5 +1,5 @@
 <h1>Home<h1>
 
-    <% if @user %>
-    Logged in as: <%= @user.username%>
+    <% if Current.user %>
+    Logged in as: <%= Current.user.username %>
     <% end %>

@@ -1,0 +1,2 @@
+class TempLink < Link
+end
