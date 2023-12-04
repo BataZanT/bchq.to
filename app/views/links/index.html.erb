@@ -1,8 +1,13 @@
 <h1>Links for <%= Current.user.username %></h1>
 
-<div class="list-group">
-  <% @links.each do |li|%>
-    <%= button_to li.title, li.url, method: :get,  class: "list-group-item list-group-item-action" %>
+
+  <% if not @links.empty?%>
+  <div class="list-group">
+    <% @links.each do |li|%>
+      <%= button_to li.title, "l/"+li.slug, method: :get,  class: "list-group-item list-group-item-action" %>
+    <% end %>
+  </div>
+  <% else %>
+  <h2>You have no links, create one</h2> <%= button_to "Here", create_link_path, method: :get,  class: "btn btn-primary" %>
   <% end %>
   
-</div>

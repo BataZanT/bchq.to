@@ -1,5 +1,5 @@
-    <h1> Create a new shortened link </h1>
-    
+<h1 class="mb-3">Create a new Private shortened link </h1>
+<h2 class="mb-3">This link will ask for a password before redirecting you to the url</h2>    
     <%=  form_with model: @link, url: create_link_path do |form| %>
     <% if @link.errors.any? %>
     <div class="alert alert-danger">
@@ -17,18 +17,10 @@
         <%= form.label :url %>
         <%= form.text_field :url , class: "form-control" %>
         </div>
-        <!--
         <div class="mb-3">
-        <%= form.radio_button :type, "regular", class: "form-check-input" %>
-        <%= form.label :type_regular, "Normal Link", class:"form-check-label" %>
-        <%= form.radio_button :type,"private", class: "form-check-input" %>
-        <%= form.label :type_private, "Private link", class:"form-check-label" %>
-        <%= form.radio_button :type, "one_time", class: "form-check-input" %>
-        <%= form.label :type_one_time, "One time link", class:"form-check-label" %>
-        <%= form.radio_button :type, "temporary", class: "form-check-input" %>
-        <%= form.label :type_temporary, "Temporary", class:"form-check-label" %>
+        <%= form.label :password %>
+        <%= form.password_field :password , class: "form-control" %>
         </div>
-        -->
         <div class="mb-3" >
             <%= form.submit "Create Shortened Link" , class: "btn btn-success"%>
         </div>

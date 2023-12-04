@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
     def destroy
         require_user_logged_in!
         User.destroy_by(id: Current.user.id)
-        redirect_to root_path, notice: "Account deleted successfully"
+        redirect_to my_links_path, notice: "Account deleted successfully"
     end
 
     private
