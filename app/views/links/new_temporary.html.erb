@@ -1,6 +1,6 @@
     <h1> Create a new Temporary shortened link </h1>
     
-    <%=  form_with model: @link, url: create_link_path do |form| %>
+    <%=  form_with model: @link, url: create_temporary_path do |form| %>
     <% if @link.errors.any? %>
     <div class="alert alert-danger">
         <% @link.errors.full_messages.each do |message| %>
@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
         <%= form.label :expiration_date %>
-        <%= form.date_field :expiration_date , class: "form-control" %>
+        <%= form.datetime_field :expiration_date , class: "form-control" %>
         </div>
         <div class="mb-3" >
             <%= form.submit "Create Shortened Link" , class: "btn btn-success"%>

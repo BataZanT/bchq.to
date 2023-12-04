@@ -1,6 +1,6 @@
 <h1 class="mb-3">Create a new Private shortened link </h1>
 <h2 class="mb-3">This link will ask for a password before redirecting you to the url</h2>    
-    <%=  form_with model: @link, url: create_link_path do |form| %>
+    <%=  form_with model: @link, url: create_private_path do |form| %>
     <% if @link.errors.any? %>
     <div class="alert alert-danger">
         <% @link.errors.full_messages.each do |message| %>
