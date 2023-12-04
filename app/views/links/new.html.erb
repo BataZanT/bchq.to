@@ -1,0 +1,24 @@
+    <h1> Create a new shortened link </h1>
+    
+    <%=  form_with model: @link, url: create_link_path do |form| %>
+    <% if @link.errors.any? %>
+    <div class="alert alert-danger">
+        <% @link.errors.full_messages.each do |message| %>
+        <div> <%= message %></div>
+        <% end %>
+    </div>
+    <% end %>
+
+        <div class="mb-3">
+        <%= form.label :title , class: "text-lg" %>
+        <%= form.text_field :title , class: "form-control" %>
+        </div>
+        <div class="mb-3">
+        <%= form.label :url %>
+        <%= form.text_field :url , class: "form-control" %>
+        </div>
+        <div class="mb-3" >
+            <%= form.submit "Create Shortened Link" , class: "btn btn-success"%>
+        </div>
+    <% end %>
+</div>

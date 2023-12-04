@@ -13,5 +13,10 @@ Rails.application.routes.draw do
 
   get "profile", to: "users#profile"
   
+  get "my_links", to: "links#index"
+  
+  get "create_link", to: "links#new"
+  post "create_link", to: "links#create"
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

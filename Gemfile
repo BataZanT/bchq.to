@@ -68,3 +68,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+
+gem 'digest', '~> 3.1', '>= 3.1.1'
