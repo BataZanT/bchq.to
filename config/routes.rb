@@ -31,8 +31,8 @@ Rails.application.routes.draw do
 
   get "l/:slug", to: "links#use"
 
-  get "pwd/:slug", to: "links#validate"
-  post "pwd/:slug", to: "links#validate"
+  get "pwd/:id", to: "links#priv_validate"
+  post "pwd_auth", to: "links#auth"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

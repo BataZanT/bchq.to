@@ -83,7 +83,7 @@ require "digest/sha2"
                 redirect_to my_links_path, status: :not_found
             end
         when "PrivLink"
-            redirect_to
+            redirect_to "/pwd/#{@link.id}"
         when "OneTLink"
             if @link.uses > 0
                 redirect_to my_links_path, status: :forbidden
@@ -96,9 +96,18 @@ require "digest/sha2"
     end
 
     def priv_validate
+        @link = PrivLink.find_by(id:params[:id])
     end
 
     def auth
+        @link = PrivLink.find_by(id:params[:id])
+        if @link.authenticate(params[:password])
+            @link.uses += 1
+            @link.save
+            redirect_to @link.url, allow_other_host: true
+        else
+            render "/pwd/#{@link.id}"
+        end
     end
 
     private
