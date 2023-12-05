@@ -15,7 +15,7 @@ require "digest/sha2"
     def create_private
         @link = PrivLink.new(link_params(:priv_link))
         basic_attributes(@link)
-        @link.password = params[:priv_link][:password]
+        @link.password_digest = params[:priv_link][:password]
         if @link.save
             redirect_to my_links_path, notice: "Private link shortened successfully"
         else
@@ -83,9 +83,7 @@ require "digest/sha2"
                 redirect_to my_links_path, status: :not_found
             end
         when "PrivLink"
-            @link.uses += 1
-            @link.save
-            redirect_to @link.url, allow_other_host: true
+            redirect_to
         when "OneTLink"
             if @link.uses > 0
                 redirect_to my_links_path, status: :forbidden
@@ -95,6 +93,12 @@ require "digest/sha2"
                 redirect_to @link.url, allow_other_host: true
             end
         end
+    end
+
+    def priv_validate
+    end
+
+    def auth
     end
 
     private

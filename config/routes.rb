@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   get "type_link", to: "links#type_link"
 
   get "l/:slug", to: "links#use"
-  #url use/:type del link para simular el accionar de cada tipo de link?
+
+  get "pwd/:slug", to: "links#validate"
+  post "pwd/:slug", to: "links#validate"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
