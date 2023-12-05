@@ -75,7 +75,7 @@ require "digest/sha2"
             @link.save
             redirect_to @link.url, allow_other_host: true
         when "TempLink"
-            if @link.expiration_date < DateTime.now
+            if @link.expiration_date > DateTime.now
                 @link.uses += 1
                 @link.save
                 redirect_to @link.url, allow_other_host: true
