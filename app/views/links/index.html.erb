@@ -3,9 +3,19 @@
   <div class="list-group">
     <% @links.each do |li|%>
       <% if not li.title.nil?%>
-        <%= button_to li.title, li.id.to_s+"/accesses", method: :get,  class: "list-group-item list-group-item-action" %>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="flex-fill overflow-auto me-3"><%= li.title%></div>
+        <%= button_to "Access Link", "l/"+li.slug, method: :get,  class: "btn btn-primary me-3" %>
+        <%= button_to "Accesses info", li.id.to_s+"/accesses", method: :get,  class: "btn btn-secondary me-3" %>
+        <%= button_to "Delete Link", li.id.to_s+"/accesses", method: :get,  class: "btn btn-danger me-3" %>
+      </li>
       <% else %>
-        <%= button_to li.url, li.id.to_s+"/accesses", method: :get,  class: "list-group-item list-group-item-action" %>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="flex-fill overflow-auto me-3"><%= li.url%></div>
+        <%= button_to "Access Link", "l/"+li.slug, method: :get,  class: "btn btn-primary me-3" %>
+        <%= button_to "Accesses info", li.id.to_s+"/accesses", method: :get,  class: "btn btn-secondary me-3" %>
+        <%= button_to "Delete Link", li.id.to_s+"/accesses", method: :get,  class: "btn btn-danger me-3" %>
+      </li>
       <% end %>
     <% end %>
   </div>

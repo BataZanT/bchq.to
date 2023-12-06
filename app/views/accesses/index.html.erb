@@ -5,12 +5,26 @@ else
     @link.url 
 end  %></h1>
   <% if not @accesses.empty?%>
-  <div class="list-group">
-    <% @accesses.each do |access|%>
-        <li class="list-group-item"><%= access.date_and_time%></li>
-    <% end %>
-  </div>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date and Time</th>
+            <th scope="col">Ip Adress</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <% @accesses.each_with_index do |access,i|%>
+        <tr>
+            <th scope="row"><%= i %></th>
+                <td><%= access.date_and_time%></td>
+                <td><%= access.ip%></td>
+            <% end %>
+        </tr>
+    </tbody>
+    
+  </table>
   <% else %>
   <h2>This link hasnt been accessed yet!</h2>
   <% end %>
-  

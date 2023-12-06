@@ -72,12 +72,11 @@ require "digest/sha2"
         @link = Link.find_by(slug:params[:slug])
         case @link.type
         when nil
-            @access = Access.create(link_id: @link.id, ip:"1457", date_and_time:DateTime.now)
+            @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
             redirect_to @link.url, allow_other_host: true
         when "TempLink"
             if @link.expiration_date > DateTime.now
-                @link.uses += 1
-                @link.save
+                @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
                 redirect_to @link.url, allow_other_host: true
             else
                 redirect_to my_links_path, status: :not_found
@@ -85,11 +84,10 @@ require "digest/sha2"
         when "PrivLink"
             redirect_to "/pwd/#{@link.id}"
         when "OneTLink"
-            if @link.uses > 0
+            if @link.accesses.size > 0
                 redirect_to my_links_path, status: :forbidden
             else
-                @link.uses += 1
-                @link.save
+                @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
                 redirect_to @link.url, allow_other_host: true
             end
         end
@@ -102,8 +100,7 @@ require "digest/sha2"
     def auth
         @link = PrivLink.find_by(id:params[:id])
         if @link.authenticate(params[:password])
-            @link.uses += 1
-            @link.save
+            @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
             redirect_to @link.url, allow_other_host: true
         else
             render "/pwd/#{@link.id}"
