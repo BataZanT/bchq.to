@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
 require "digest/sha2"
-    
+
+
     def new
         @link = Link.new
     end
@@ -71,8 +72,7 @@ require "digest/sha2"
         @link = Link.find_by(slug:params[:slug])
         case @link.type
         when nil
-            @link.uses += 1
-            @link.save
+            @access = Access.create(link_id: @link.id, ip:"1457", date_and_time:DateTime.now)
             redirect_to @link.url, allow_other_host: true
         when "TempLink"
             if @link.expiration_date > DateTime.now

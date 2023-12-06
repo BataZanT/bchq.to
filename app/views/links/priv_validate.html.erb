@@ -1,4 +1,4 @@
-<h1>Enter Link password for <%=@link.title%></h1>
+<h1>Enter Link password for <%=@link.title if  not @link.title.nil?%></h1>
 
 <%= form_with url: pwd_auth_path(:id => @link.id) do |form| %>
     <div class="mb-3">

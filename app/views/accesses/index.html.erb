@@ -1,0 +1,16 @@
+<h1>Accesses for <%= 
+if not @link.title.nil?
+    @link.title 
+else 
+    @link.url 
+end  %></h1>
+  <% if not @accesses.empty?%>
+  <div class="list-group">
+    <% @accesses.each do |access|%>
+        <li class="list-group-item"><%= access.date_and_time%></li>
+    <% end %>
+  </div>
+  <% else %>
+  <h2>This link hasnt been accessed yet!</h2>
+  <% end %>
+  

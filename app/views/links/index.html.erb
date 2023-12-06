@@ -2,10 +2,14 @@
   <% if not @links.empty?%>
   <div class="list-group">
     <% @links.each do |li|%>
-      <%= button_to li.title, "l/"+li.slug, method: :get,  class: "list-group-item list-group-item-action" %>
+      <% if not li.title.nil?%>
+        <%= button_to li.title, li.id.to_s+"/accesses", method: :get,  class: "list-group-item list-group-item-action" %>
+      <% else %>
+        <%= button_to li.url, li.id.to_s+"/accesses", method: :get,  class: "list-group-item list-group-item-action" %>
+      <% end %>
     <% end %>
   </div>
   <% else %>
-  <h2>You have no links, create one</h2> <%= button_to "Here", create_link_path, method: :get,  class: "btn btn-primary" %>
+  <h2>You have no links, create one</h2> <%= button_to "Here", type_link_path, method: :get,  class: "btn btn-primary" %>
   <% end %>
   
