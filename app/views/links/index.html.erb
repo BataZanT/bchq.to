@@ -2,21 +2,16 @@
   <% if not @links.empty?%>
   <div class="list-group">
     <% @links.each do |li|%>
+    <li class="list-group-item d-flex justify-content-between">
       <% if not li.title.nil?%>
-      <li class="list-group-item d-flex justify-content-between">
         <div class="flex-fill overflow-auto me-3"><%= li.title%></div>
-        <%= button_to "Access Link", "l/"+li.slug, method: :get,  class: "btn btn-primary me-3" %>
-        <%= button_to "Accesses info", li.id.to_s+"/accesses", method: :get,  class: "btn btn-secondary me-3" %>
-        <%= button_to "Delete Link", li.id.to_s+"/accesses", method: :get,  class: "btn btn-danger me-3" %>
-      </li>
       <% else %>
-      <li class="list-group-item d-flex justify-content-between">
         <div class="flex-fill overflow-auto me-3"><%= li.url%></div>
-        <%= button_to "Access Link", "l/"+li.slug, method: :get,  class: "btn btn-primary me-3" %>
-        <%= button_to "Accesses info", li.id.to_s+"/accesses", method: :get,  class: "btn btn-secondary me-3" %>
-        <%= button_to "Delete Link", li.id.to_s+"/accesses", method: :get,  class: "btn btn-danger me-3" %>
-      </li>
       <% end %>
+        <%= button_to "Access Link", "l/"+li.slug, method: :get,  class: "btn btn-primary me-3" %>
+        <%= button_to "Accesses info", "accesses/"+li.id.to_s, method: :get,  class: "btn btn-secondary me-3" %>
+        <%= button_to "Delete Link", "/delete_link/"+li.id.to_s, method: :delete, class: "btn btn-danger me-3" %>
+      </li>
     <% end %>
   </div>
   <% else %>

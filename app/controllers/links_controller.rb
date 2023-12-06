@@ -107,6 +107,13 @@ require "digest/sha2"
         end
     end
 
+    def destroy
+        @link = Link.find_by(id: params[:id])
+        @link.destroy
+        redirect_to my_links_path, status: :see_other
+
+    end
+
     private
     def link_params(type)
         params.require(type).permit(:title,:url)

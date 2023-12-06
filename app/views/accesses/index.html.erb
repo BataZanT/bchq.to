@@ -5,6 +5,7 @@ else
     @link.url 
 end  %></h1>
   <% if not @accesses.empty?%>
+  <%= button_to "Today's accesses", "/accesses/per_day/"+@link.id.to_s, method: :get,  class: "btn btn-primary me-3" %>
   <table class="table table-striped">
     <thead>
         <tr>

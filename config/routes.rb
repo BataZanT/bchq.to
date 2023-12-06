@@ -34,7 +34,11 @@ Rails.application.routes.draw do
   get "pwd/:id", to: "links#priv_validate"
   post "pwd_auth", to: "links#auth"
 
-  get ":id/accesses", to: "accesses#index"
+  delete "delete_link/:id",to: "links#destroy"
+
+  get "accesses/:id", to: "accesses#index"
+  get "accesses/today/:id", to: "accesses#index_today"
+  get "accesses/per_day/:id", to: "accesses#index_per_day"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

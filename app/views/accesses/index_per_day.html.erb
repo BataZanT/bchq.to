@@ -1,0 +1,32 @@
+<h1>Accesses for <%= 
+if not @link.title.nil?
+    @link.title 
+else 
+    @link.url 
+end  %></h1>
+
+  <% if not @hash.empty?%>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Date</th>
+            <th scope="col">Number of Accesses</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <% @hash.each_pair do |date,num|%>
+        <tr>
+            <th scope="row"></th>
+                <td><%= date%></td>
+                <td><%= num%></td>
+            <% end %>
+        </tr>
+    </tbody>
+  </table>
+  <% else %>
+
+  <h2>This link hasnt been accessed!</h2>
+
+  <% end %>

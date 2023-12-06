@@ -1,0 +1,26 @@
+<h1>Accesses for <%= 
+if not @link.title.nil?
+    @link.title 
+else 
+    @link.url 
+end  %></h1>
+
+  <% if not @num == 0%>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Todays accesses</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"></th>
+                <td><%= @num %></td>
+        </tr>
+    </tbody>
+  </table>
+  <% else %>
+
+  <h2>This link hasnt been accessed today!</h2>
+
+  <% end %>
