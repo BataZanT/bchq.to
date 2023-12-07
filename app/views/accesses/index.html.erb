@@ -4,8 +4,23 @@ if not @link.title.nil?
 else 
     @link.url 
 end  %></h1>
-  <% if not @accesses.empty?%>
-  <%= button_to "Today's accesses", "/accesses/per_day/"+@link.id.to_s, method: :get,  class: "btn btn-primary me-3" %>
+
+<% if not @accesses.empty?%>
+  <%= form_with url: "/accesses/date_search/"+@link.id.to_s, method: :get do |form| %>
+      <%= form.label :from, "Search for accesses from:",class:"mb-1" %>
+      <%= form.date_field :from ,class:"form-control mb-3"%>
+      <%= form.label :to, "To:",class:"mb-1" %>
+      <%= form.date_field :to ,class:"form-control mb-3"%>
+      <%= form.submit "Search Dates" ,class: "btn btn-primary mb-3"%>
+  <% end %>
+
+  <%= form_with url: "/accesses/ip_search/"+@link.id.to_s, method: :get do |form| %>
+      <%= form.label :ip, "Search for accesses from an IP:",class:"mb-1" %>
+      <%= form.text_field :ip ,class:"form-control mb-3"%>
+      <%= form.submit "Search IP" ,class: "btn btn-primary mb-3"%>
+  <% end %>
+
+<%= button_to "Today's accesses", "/accesses/per_day/"+@link.id.to_s, method: :get,  class: "btn btn-primary me-3" %>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -26,6 +41,6 @@ end  %></h1>
     </tbody>
     
   </table>
-  <% else %>
-  <h2>This link hasnt been accessed yet!</h2>
-  <% end %>
+<% else %>
+  <h2>This link hasnt been accessed yet or your search has no results!</h2>
+<% end %>
