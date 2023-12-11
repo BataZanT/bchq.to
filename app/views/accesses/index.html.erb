@@ -1,9 +1,4 @@
-<h1>Accesses for <%= 
-if not @link.title.nil?
-    @link.title 
-else 
-    @link.url 
-end  %></h1>
+<%= render partial: "shared/access_title"%>
 
 <% if not @accesses.empty?%>
   <%= form_with url: "/accesses/date_search/"+@link.id.to_s, method: :get do |form| %>

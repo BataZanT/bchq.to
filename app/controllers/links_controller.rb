@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-require "digest/sha2"
+
 
 
     def new
@@ -121,7 +121,10 @@ require "digest/sha2"
 
     def basic_attributes(link)
         link.user_id = Current.user.id
-        link.slug = Digest::SHA2.hexdigest(link.url) [0..7]
+        link.slug = SecureRandom.hex[0..7]
+        while not (Link.find_by(slug:link.slug).nil?)
+            link.slug = SecureRandom.hex[0..7]
+        end
     end
 
 end
