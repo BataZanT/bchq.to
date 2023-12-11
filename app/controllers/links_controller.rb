@@ -63,6 +63,10 @@ class LinksController < ApplicationController
         end
     end
 
+
+
+
+
     def index
         @links = Link.where(user_id: Current.user.id)
     end
@@ -71,26 +75,20 @@ class LinksController < ApplicationController
     def use
         @link = Link.find_by(slug:params[:slug])
         case @link.type
-        when nil
-            @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
-            redirect_to @link.url, allow_other_host: true
         when "TempLink"
-            if @link.expiration_date > DateTime.now
-                @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
-                redirect_to @link.url, allow_other_host: true
-            else
+            if @link.expiration_date < DateTime.now
                 redirect_to my_links_path, status: :not_found
             end
         when "PrivLink"
             redirect_to "/pwd/#{@link.id}"
+            return
         when "OneTLink"
             if @link.accesses.size > 0
                 redirect_to my_links_path, status: :forbidden
-            else
-                @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
-                redirect_to @link.url, allow_other_host: true
             end
         end
+        @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
+        redirect_to @link.url, allow_other_host: true
     end
 
     def priv_validate
