@@ -16,7 +16,7 @@ class LinksController < ApplicationController
     def create_private
         @link = PrivLink.new(link_params(:priv_link))
         basic_attributes(@link)
-        @link.password_digest = params[:priv_link][:password]
+        @link.password = params[:priv_link][:password]
         if @link.save
             redirect_to my_links_path, notice: "Private link shortened successfully"
         else
@@ -62,10 +62,6 @@ class LinksController < ApplicationController
             render:new
         end
     end
-
-
-
-
 
     def index
         @links = Link.where(user_id: Current.user.id)
