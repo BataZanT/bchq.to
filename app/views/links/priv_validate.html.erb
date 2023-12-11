@@ -1,6 +1,13 @@
 <h1>Enter Link password for <%=@link.title if  not @link.title.nil?%></h1>
 
 <%= form_with url: pwd_auth_path(:id => @link.id) do |form| %>
+    <% if @link.errors.any? %>
+    <div class="alert alert-danger">
+        <% @link.errors.full_messages.each do |message| %>
+        <div> <%= message %></div>
+        <% end %>
+    </div>
+    <% end %>
     <div class="mb-3">
         <%= form.label :password %>
         <%= form.password_field :password , class: "form-control" %>

@@ -4,3 +4,7 @@ if not @link.title.nil?
 else 
     @link.url 
 end  %></h1>
+
+<% if not @link.type.nil?%>
+<h2 class="me-5 mb-3">Type: <%= @link.type%></h2>
+        <% end %>

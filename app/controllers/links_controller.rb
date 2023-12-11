@@ -97,7 +97,8 @@ class LinksController < ApplicationController
             @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)
             redirect_to @link.url, allow_other_host: true
         else
-            render "/pwd/#{@link.id}"
+            @link.errors.add(:password,:incorrect,message:"Incorrect")
+            render :priv_validate
         end
     end
 
