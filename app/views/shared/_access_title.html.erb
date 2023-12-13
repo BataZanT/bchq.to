@@ -6,5 +6,15 @@ else
 end  %></h1>
 
 <% if not @link.type.nil?%>
-<h2 class="me-5 mb-3">Type: <%= @link.type%></h2>
-        <% end %>
+    <h2 class="me-5 mb-3">Type: <%= @link.type%></h2>
+<% else %>
+    <h2 class="me-5 mb-3">Normal link</h2>
+<% end %>
+
+<% if @link.type == "TempLink"%>
+    <h3 class="me-5 mb-3">Expiration date: <%= @link.expiration_date %></h3>
+<% elsif @link.type == "OneTLink"%>
+    <% if @link.accesses.all.length > 0 %>
+    <h3 class="me-5 mb-3">This link has been used alredy and is no longer available</h3>
+    <% end %>
+<% end %>

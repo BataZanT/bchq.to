@@ -74,6 +74,7 @@ class LinksController < ApplicationController
         when "TempLink"
             if @link.expiration_date < DateTime.now
                 redirect_to my_links_path, status: :not_found
+                return
             end
         when "PrivLink"
             redirect_to "/pwd/#{@link.id}"
@@ -81,6 +82,7 @@ class LinksController < ApplicationController
         when "OneTLink"
             if @link.accesses.size > 0
                 redirect_to my_links_path, status: :forbidden
+                return
             end
         end
         @access = Access.create(link_id: @link.id, ip:request.remote_ip, date_and_time:DateTime.now)

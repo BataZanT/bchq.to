@@ -9,7 +9,9 @@
         <div class="flex-fill overflow-auto me-3"><%= li.url%></div>
       <% end %>
         <% if not li.type.nil?%>
-        <div class="me-5"><%= li.type%></div>
+        <div class="card px-2 text-white bg-dark me-5"><%= li.type%></div>
+        <% else %>
+        <div class="card px-2 me-5">Normal Link</div>
         <% end %>
         <%= button_to "Access Link", "l/"+li.slug, method: :get,  class: "btn btn-primary me-3" %>
         <%= button_to "Info", "accesses/"+li.id.to_s, method: :get,  class: "btn btn-secondary me-3" %>
