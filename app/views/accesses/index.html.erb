@@ -15,7 +15,7 @@
       <%= form.submit "Search IP" ,class: "btn btn-primary mb-3"%>
   <% end %>
 
-<%= button_to "Today's accesses", "/accesses/per_day/"+@link.id.to_s, method: :get,  class: "btn btn-primary me-3" %>
+<%= button_to "Accesses per day", "/accesses/per_day/"+@link.id.to_s, method: :get,  class: "btn btn-primary me-3" %>
   <table class="table table-striped">
     <thead>
         <tr>

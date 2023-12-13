@@ -12,7 +12,7 @@
         <div class="me-5"><%= li.type%></div>
         <% end %>
         <%= button_to "Access Link", "l/"+li.slug, method: :get,  class: "btn btn-primary me-3" %>
-        <%= button_to "Accesses info", "accesses/"+li.id.to_s, method: :get,  class: "btn btn-secondary me-3" %>
+        <%= button_to "Info", "accesses/"+li.id.to_s, method: :get,  class: "btn btn-secondary me-3" %>
         <%= button_to "Delete Link", "/delete_link/"+li.id.to_s, method: :delete, class: "btn btn-danger me-3" %>
       </li>
     <% end %>
