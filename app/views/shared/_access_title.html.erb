@@ -1,11 +1,11 @@
 <h1>Accesses for <%= 
-if not @link.title.nil?
+if !@link.title.nil?
     @link.title 
 else 
     @link.url 
 end  %></h1>
 
-<% if not @link.type.nil?%>
+<% if !@link.type.nil?%>
     <h2 class="me-5 mb-3">Type: <%= @link.type%></h2>
 <% else %>
     <h2 class="me-5 mb-3">Normal link</h2>

@@ -5,8 +5,3 @@ class DateValidator < ActiveModel::Validator
        end
    end
 end
-
-class TempLink < Link
-    validates :expiration_date,presence:true
-    validates_with DateValidator
-end

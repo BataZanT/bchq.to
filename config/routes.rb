@@ -29,17 +29,17 @@ Rails.application.routes.draw do
   
   get "type_link", to: "links#type_link"
 
-  get "l/:slug", to: "links#use"
+  get "l/:slug", to: "links#use", as: "use_link"
 
   get "pwd/:id", to: "links#priv_validate"
   post "pwd_auth", to: "links#auth"
 
-  delete "delete_link/:id",to: "links#destroy"
+  delete "delete_link/:id",to: "links#destroy" , as: "delete_link"
 
-  get "accesses/:id", to: "accesses#index"
-  get "accesses/per_day/:id", to: "accesses#index_per_day"
-  get "accesses/date_search/:id",to: "accesses#date_search"
-  get "accesses/ip_search/:id",to: "accesses#ip_search"
+  get "accesses/:id", to: "accesses#index", as: "link_info"
+  get "accesses/per_day/:id", to: "accesses#index_per_day", as: "per_day"
+  get "accesses/date_search/:id",to: "accesses#date_search", as: "date_search"
+  get "accesses/ip_search/:id",to: "accesses#ip_search", as: "ip_search"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

@@ -1,7 +1,7 @@
 <%= render partial: "shared/access_title"%>
 
-<% if not @accesses.empty?%>
-  <%= form_with url: "/accesses/date_search/"+@link.id.to_s, method: :get do |form| %>
+<% if !@accesses.empty?%>
+  <%= form_with url: date_search_path(@link.id.to_s), method: :get do |form| %>
       <%= form.label :from, "Search for accesses from:",class:"mb-1" %>
       <%= form.date_field :from,required: true,class:"form-control mb-3"%>
       <%= form.label :to, "To:",class:"mb-1" %>
@@ -9,13 +9,13 @@
       <%= form.submit "Search Dates" ,class: "btn btn-primary mb-3"%>
   <% end %>
 
-  <%= form_with url: "/accesses/ip_search/"+@link.id.to_s, method: :get do |form| %>
+  <%= form_with url: ip_search_path(@link.id.to_s), method: :get do |form| %>
       <%= form.label :ip, "Search for accesses from an IP:",class:"mb-1" %>
       <%= form.text_field :ip ,required: true,class:"form-control mb-3"%>
       <%= form.submit "Search IP" ,class: "btn btn-primary mb-3"%>
   <% end %>
 
-<%= button_to "Accesses per day", "/accesses/per_day/"+@link.id.to_s, method: :get,  class: "btn btn-primary me-3" %>
+<%= button_to "Accesses per day", per_day_path(@link.id.to_s), method: :get,  class: "btn btn-primary me-3" %>
   <table class="table table-striped">
     <thead>
         <tr>

@@ -119,7 +119,7 @@ class LinksController < ApplicationController
     def basic_attributes(link)
         link.user_id = Current.user.id
         link.slug = SecureRandom.hex[0..7]
-        while not (Link.find_by(slug:link.slug).nil?)
+        while !(Link.find_by(slug:link.slug).nil?)
             link.slug = SecureRandom.hex[0..7]
         end
     end
