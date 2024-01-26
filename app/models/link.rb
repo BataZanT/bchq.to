@@ -11,7 +11,7 @@ class Link < ApplicationRecord
 
     def set_blank_nil
         attributes.each do |column,value|
-            self[column].present? || self[column] = nil
+            self[column] = nil if self[column].blank?
         end
     end
 end

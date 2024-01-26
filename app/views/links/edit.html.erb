@@ -1,0 +1,34 @@
+<h1 class="mb-3">Edit a link</h1>
+
+    <%=  form_with model: @link,url: update_link_path do |form| %>
+    <% if @link.errors.any? %>
+    <div class="alert alert-danger">
+        <% @link.errors.full_messages.each do |message| %>
+        <div> <%= message %></div>
+        <% end %>
+    </div>
+    <% end %>
+        <div class="mb-3">
+        Current Title: <%= @link.title %>
+        </div>
+        <div class="mb-3">
+        <%= form.label :title , class: "text-lg" %>
+        <%= form.text_field :title , class: "form-control" %>
+        </div>
+        <% if @link.type == "TempLink" %>
+        <div class="mb-3">
+        <%= form.label :expiration_date %>
+        <%= form.datetime_local_field :expiration_date , class: "form-control" %>
+        </div>
+        <% end %>
+        <% if @link.type == "PrivLink" %>
+        <div class="mb-3">
+        <%= form.label :password %>
+        <%= form.password_field :password , class: "form-control" %>
+        </div>
+        <% end %>
+        <div class="mb-3" >
+            <%= form.submit "Edit link" , class: "btn btn-success"%>
+        </div>
+    <% end %>
+</div>

@@ -1,5 +1,6 @@
 class AccessesController < ApplicationController
-
+    before_action :require_user_logged_in!
+    
     def index
         @link = Link.find_by(id:params[:id])
         @accesses = @link.accesses

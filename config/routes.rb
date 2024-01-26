@@ -31,8 +31,11 @@ Rails.application.routes.draw do
 
   get "l/:slug", to: "links#use", as: "use_link"
 
-  get "pwd/:id", to: "links#priv_validate"
+  get "pwd/:id", to: "links#priv_validate", as: "priv_validate"
   post "pwd_auth", to: "links#auth"
+
+  get "edit_link/:id", to: "links#edit", as: "edit_link"
+  patch "update_link/:id", to: "links#update", as: "update_link"
 
   delete "delete_link/:id",to: "links#destroy" , as: "delete_link"
 

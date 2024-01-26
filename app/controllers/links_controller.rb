@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-
+    before_action :require_user_logged_in!
 
 
     def new
@@ -77,7 +77,7 @@ class LinksController < ApplicationController
                 return
             end
         when "PrivLink"
-            redirect_to "/pwd/#{@link.id}"
+            redirect_to priv_validate_path(@link.id)
             return
         when "OneTLink"
             if @link.accesses.size > 0
@@ -111,6 +111,21 @@ class LinksController < ApplicationController
 
     end
 
+    def edit 
+        @link = Link.find_by(id: params[:id])
+    end
+
+    def update
+        @link = Link.find_by(id: params[:id])
+        if @link.update(params.require(type_for_params(@link.type)).permit(:title,:expiration_date,:password))
+            redirect_to my_links_path, notice: "Link edited succesfully"
+        else
+            render :edit
+        end
+    end
+
+
+
     private
     def link_params(type)
         params.require(type).permit(:title,:url)
@@ -124,4 +139,16 @@ class LinksController < ApplicationController
         end
     end
 
+    def type_for_params(type)
+        case type
+        when nil
+            "link"
+        when "TempLink"
+            "temp_link"
+        when "PrivLink"
+            "priv_link"
+        when "OneTLink"
+            "one_t_link"
+        end
+    end
 end
