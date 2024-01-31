@@ -9,102 +9,50 @@
 #   end
 
 User.create!([{
+  id: 1,  
   username: "User",
   mail: "user@mail.com",
   password: "1234",
 }])
-
+30.times do |i|
 Link.create!([{
-    title:"Link normal",
-    slug:"45as16jk",
-    url:"https://guides.rubyonrails.org/form_helpers.html",
+    title:"Link normal#{i}",
+    slug: i.to_s + SecureRandom.hex[0..6],
+    url:"https://ttps-ruby.github.io/#/#{i}",
     user_id:1
 }])
 
 TempLink.create!([
 {
-    title:"Link temporal",
-    slug:"ag4t93gf",
-    url:"https://getbootstrap.com/docs/5.0/forms/overview/",
-    expiration_date: "2023-12-25 16:46:00",
+    title:"Link temporal#{i}",
+    slug: (i+30).to_s + SecureRandom.hex[0..6],
+    url:"https://ttps-ruby.github.io/#/#{i}",
+    expiration_date: Date.today+rand(1..1000),
     user_id:1
 }])
 
 PrivLink.create!([
 {
-    title:"Link privado",
-    slug:"t86r4fg5",
-    url:"https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/303",
+    title:"Link privado#{i}",
+    slug: (i+60).to_s + SecureRandom.hex[0..6],
+    url:"https://ttps-ruby.github.io/#/#{i}",
     password: "1234",
     user_id:1
 }])
 
 OneTLink.create!([
 {
-    title:"Link efimero1",
-    slug:"t86r4fp5",
-    url:"https://medium.com/@SJTGs/seeding-in-rails-ff6b4e35941b",
-    user_id:1
-},
-{
-    title:"Link efimero2",
-    slug:"t86rfhr9",
-    url:"https://ultimateframedata.com/",
+    title:"Link efimero#{i}",
+    slug:(i+90).to_s + SecureRandom.hex[0..6],
+    url:"https://ttps-ruby.github.io/#/#{i}",
     user_id:1
 }])
-
+20.times do
 Access.create!([{
-link_id:1,
-ip:"127.0.0.1",
-date_and_time:"2023-12-11 16:47:59.744197"
-},
-{
-    link_id:1,
-    ip:"128.0.0.1",
-    date_and_time:"2023-11-11 16:47:59.744197"
-},
-{
-    link_id:1,
-    ip:"128.0.0.1",
-    date_and_time:"2023-10-11 16:47:59.744197"
-},
-{
-    link_id:1,
-    ip:"127.0.0.1",
-    date_and_time:"2023-12-11 15:47:59.744197"
-},
-{
-    link_id:1,
-    ip:"127.0.0.1",
-    date_and_time:"2023-11-11 16:49:59.744197"
-},
-{
-    link_id:2,
-    ip:"128.0.0.1",
-    date_and_time:"2023-12-05 16:47:59.744197"
-},
-{
-    link_id:2,
-    ip:"128.0.0.1",
-    date_and_time:"2023-11-03 16:47:59.744197"
-},
-{
-    link_id:2,
-    ip:"128.0.0.1",
-    date_and_time:"2023-12-06 20:34:25.944405"
-},
-{
-    link_id:3,
-    ip:"127.0.0.1",
-    date_and_time:"2023-12-07 03:38:52.449167"
-},
-{
-    link_id:3,
-    ip:"130.0.0.1",
-    date_and_time:"	2023-12-07 17:12:45.225497"
-}
+    link_id:rand(1..Link.all.length),
+    ip:"#{rand(0..255)}.#{rand(0..255)}.#{rand(0..255)}.#{rand(0..255)}",
+    date_and_time: Date.today-rand(1000)
+}])
 
-])
-
-
-p "Created #{Book.count} Books"
+end
+end
